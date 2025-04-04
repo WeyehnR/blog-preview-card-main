@@ -21,6 +21,11 @@
 
   Greg Hooper -->
 
+  <div class="view-switcher">
+    <button onclick="switchView('desktop')" class="active">Desktop</button>
+    <button onclick="switchView('mobile')">Mobile</button>
+  </div>
+
   <div class="card">
     <div class="card-image">
       <img src="./assets/images/illustration-article.svg" alt="Blog article illustration">
@@ -43,5 +48,25 @@
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Weyehn Reeves</a>.
   </div>
+
+  <script>
+    function switchView(view) {
+      const body = document.body;
+      const buttons = document.querySelectorAll('.view-switcher button');
+      
+      // Remove all force classes and active states
+      body.classList.remove('force-desktop', 'force-mobile');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      // Add new class and active state
+      if (view === 'desktop') {
+        body.classList.add('force-desktop');
+        buttons[0].classList.add('active');
+      } else {
+        body.classList.add('force-mobile');
+        buttons[1].classList.add('active');
+      }
+    }
+  </script>
 </body>
 </html>

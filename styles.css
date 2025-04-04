@@ -10,6 +10,10 @@
     --color-white: #FFF;
     --color-gray-600: #7F7F7F;
     --color-gray-950: #111;
+
+    /* Card dimensions */
+    --card-width: 384px;
+    --card-image-width: 336px;
 }
 
 @font-face {
@@ -41,6 +45,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: var(--spacing-200, 24px);
+    transition: all 0.3s ease;
 }
 
 .card {
@@ -49,15 +55,18 @@ body {
     background: var(--color-white, #FFF);
     box-shadow: 8px 8px 0px 0px #000;
     padding: var(--spacing-200, 24px);
-    width: 384px;
+    width: var(--card-width);
+    max-width: 100%;
+    transition: all 0.3s ease;
 }
 
 .card-image {
     border-radius: 20px;
     overflow: hidden;
-    width: 336px;
+    width: var(--card-image-width);
     height: 200px;
     margin-bottom: var(--spacing-200, 24px);
+    max-width: 100%;
 }
 
 .card-image img {
@@ -95,6 +104,11 @@ h1 {
     color: var(--color-gray-950, #111);
     font-size: 24px;
     font-weight: 800;
+    cursor: pointer;
+}
+
+h1:hover {
+    color: var(--color-yellow, #F4D04E);
 }
 
 .description {
@@ -131,4 +145,89 @@ h1 {
 
 .attribution a { 
     color: hsl(228, 45%, 44%); 
+}
+
+@media (max-width: 425px) {
+    :root {
+        /* Adjust spacing for mobile */
+        --card-width: 100%;
+        --card-image-width: 100%;
+        --spacing-200: 16px;
+    }
+
+    body {
+        padding: var(--spacing-100, 8px);
+    }
+
+    .card {
+        box-shadow: 6px 6px 0px 0px #000;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+}
+
+.view-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    background: var(--color-white);
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.view-switcher button {
+    padding: 8px 16px;
+    border: 1px solid var(--color-gray-950);
+    background: var(--color-white);
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: 'Figtree', sans-serif;
+}
+
+.view-switcher button.active {
+    background: var(--color-yellow);
+}
+
+/* Force Desktop View */
+.force-desktop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.force-desktop .card {
+    width: var(--card-width);
+    max-width: var(--card-width);
+}
+
+.force-desktop .card-image {
+    width: var(--card-image-width);
+}
+
+/* Force Mobile View */
+.force-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: var(--spacing-100, 8px);
+}
+
+.force-mobile .card {
+    width: 375px;
+}
+
+.force-mobile .card-image {
+    width: 100%;
 }
